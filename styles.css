@@ -1,0 +1,39 @@
+body {
+    padding: none;
+    margin: 0;
+    justify-items: center;
+}
+
+header {
+    width: 100%;
+    margin: none;
+}
+
+h1 {
+    margin-left: 2.5%;
+}
+
+nav {
+    width: 100%;
+}
+
+.main-ul {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0.25em;
+    width: 95%;
+    margin: auto;
+}
+
+.main-ul li {
+    list-style: none;
+    border-radius: 0.5em;
+    background-color: gray;
+    padding: 1em;
+}
+
+.main-ul a {
+    text-decoration: none;
+}
