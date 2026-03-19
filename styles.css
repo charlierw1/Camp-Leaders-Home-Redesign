@@ -83,7 +83,7 @@ header h1 {
     display: contents;
 }
 
-.nav-grid > li > .nav-button {
+.nav-grid > li > :is(a, button) {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -102,43 +102,43 @@ header h1 {
     height: 3em;
 }
 
-.nav-grid > li:nth-child(1) > .nav-button {
+.nav-grid > li:nth-child(1) > :is(a, button) {
     background-color: var(--blue-bg);
     color: var(--blue-fg);
 }
-.nav-grid > li:nth-child(2) > .nav-button {
+.nav-grid > li:nth-child(2) > :is(a, button) {
     background-color: var(--cyan-bg);
     color: var(--cyan-fg);
 }
-.nav-grid > li:nth-child(3) > .nav-button {
+.nav-grid > li:nth-child(3) > :is(a, button) {
     background-color: var(--mint-bg);
     color: var(--mint-fg);
 }
-.nav-grid > li:nth-child(4) > .nav-button {
+.nav-grid > li:nth-child(4) > :is(a, button) {
     background-color: var(--lime-bg);
     color: var(--lime-fg);
 }
-.nav-grid > li:nth-child(5) > .nav-button {
+.nav-grid > li:nth-child(5) > :is(a, button) {
     background-color: var(--pea-bg);
     color: var(--pea-fg);
 }
-.nav-grid > li:nth-child(6) > .nav-button {
+.nav-grid > li:nth-child(6) > :is(a, button) {
     background-color: var(--yellow-bg);
     color: var(--yellow-fg);
 }
-.nav-grid > li:nth-child(7) > .nav-button {
+.nav-grid > li:nth-child(7) > :is(a, button) {
     background-color: var(--light-orange-bg);
     color: var(--light-orange-fg);
 }
-.nav-grid > li:nth-child(8) > .nav-button {
+.nav-grid > li:nth-child(8) > :is(a, button) {
     background-color: var(--orange-bg);
     color: var(--orange-fg);
 }
-.nav-grid > li:nth-child(9) > .nav-button {
+.nav-grid > li:nth-child(9) > :is(a, button) {
     background-color: var(--red-bg);
     color: var(--red-fg);
 }
-.nav-grid > li:nth-child(10) > .nav-button {
+.nav-grid > li:nth-child(10) > :is(a, button) {
     background-color: var(--pink-bg);
     color: var(--pink-fg);
 }
@@ -163,38 +163,20 @@ header h1 {
     10%, 100% { transform: rotate(0deg); }
 }
 
-.nav-grid > li > .nav-button:hover {
+.nav-grid > li > :is(a, button):hover {
     transform: translateY(-0.125rem);
     box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.15);
 }
 
-.nav-icon {
+.nav-grid svg {
     width: 1.5em;
     height: 1.5em;
     flex-shrink: 0;
 }
 
-.nav-button span {
+.nav-grid > li > :is(a, button) span {
     white-space: nowrap;
     line-height: 1;
-}
-
-@keyframes swingDown {
-    from {
-        max-height: 2.5em;
-    }
-    to {
-        max-height: 30rem;
-    }
-}
-
-@keyframes swingUp {
-    from {
-        max-height: 30rem;
-    }
-    to {
-        max-height: 2.5em;
-    }
 }
 
 @keyframes expandItem {
@@ -237,10 +219,6 @@ header h1 {
 .profile-btn:hover {
     transform: translateY(-0.125rem);
     box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.15);
-}
-
-.nav-button-wrapper {
-    position: relative;
 }
 
 .secondary-nav {
@@ -519,13 +497,13 @@ header h1 {
     font-weight: 700;
 }
 
-.welcome-text a.see-more {
+.welcome-text a {
     color: #1a5fa8;
     text-decoration: none;
     font-weight: 600;
 }
 
-.welcome-text a.see-more:hover {
+.welcome-text a:hover {
     text-decoration: underline;
 }
 
@@ -648,7 +626,7 @@ footer {
     padding: 1rem;
 }
 
-.basic-form {
+.basic-tab-panel form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
