@@ -348,6 +348,7 @@ header:has(.profile-menu-toggle-input:checked) .profile-sections-nav .secondary-
     --status-dot-border: none;
     background-color: var(--status-bg);
     border: 1px solid var(--status-border);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .secondary-nav a::before {
@@ -362,22 +363,22 @@ header:has(.profile-menu-toggle-input:checked) .profile-sections-nav .secondary-
 }
 
 .secondary-nav a.uncomplete {
-    --status-bg: rgba(220, 53, 69, 0.42);
-    --status-border: rgba(255, 140, 140, 0.65);
+    --status-bg: rgba(191, 55, 55, 0.88);
+    --status-border: rgba(255, 196, 196, 0.82);
     --status-dot-fill: transparent;
     --status-dot-border: 0.15em solid white;
 }
 
 .secondary-nav a.complete {
-    --status-bg: rgba(40, 167, 69, 0.42);
-    --status-border: rgba(162, 255, 186, 0.65);
+    --status-bg: rgba(27, 133, 68, 0.88);
+    --status-border: rgba(181, 247, 200, 0.82);
     --status-dot-fill: white;
     --status-dot-border: none;
 }
 
 .secondary-nav a.underway {
-    --status-bg: rgba(255, 193, 7, 0.45);
-    --status-border: rgba(255, 227, 152, 0.75);
+    --status-bg: rgba(211, 151, 20, 0.9);
+    --status-border: rgba(255, 233, 172, 0.84);
     --status-dot-fill: linear-gradient(90deg, white 50%, transparent 50%);
     --status-dot-border: 0.15em solid white;
 }
@@ -418,15 +419,14 @@ body:not(.basic-info-page) main > section > .welcome-body {
     margin: 0;
     align-self: center;
     border-radius: 0.5em;
-    background-color: #c7e6b5;
-    color: var(--lime-fg);
+    background-color: #92cf6f;
+    color: #113d11;
     text-decoration: none;
     font-size: clamp(0.83rem, 2vw, 1rem);
     font-weight: 700;
     animation: highlightPulse 2.4s ease-in-out infinite,
                wiggle 10s ease-in-out 4s infinite;
-    outline: 2px solid transparent;
-    outline-offset: 4px;
+    border: 1px solid rgba(17, 61, 17, 0.28);
     box-shadow: 0 0.5rem 1.2rem rgba(0, 82, 10, 0.18);
     transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
@@ -434,7 +434,7 @@ body:not(.basic-info-page) main > section > .welcome-body {
 .next-action-button:hover {
     transform: translateY(-0.125rem);
     box-shadow: 0 0.75rem 1.5rem rgba(0, 82, 10, 0.24);
-    background-color: #d4efc5;
+    background-color: #a0dc7d;
 }
 
 .next-action-button:focus-visible {
@@ -485,8 +485,8 @@ body:not(.basic-info-page) main > section > .welcome-body > .welcome-text p {
     margin: 0.8em 0;
 }
 
-body:not(.basic-info-page) main > section > .welcome-body > .welcome-text strong {
-    color: #1a5fa8;
+.welcome-emphasis {
+    color: var(--nav-bg);
     font-weight: 700;
 }
 
@@ -498,6 +498,62 @@ body:not(.basic-info-page) main > section > .welcome-body > .welcome-text a {
 
 body:not(.basic-info-page) main > section > .welcome-body > .welcome-text a:hover {
     text-decoration: underline;
+}
+
+.welcome-more {
+    margin-top: 0.4rem;
+}
+
+.welcome-more-toggle-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.welcome-more-toggle {
+    color: #1a5fa8;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.welcome-more-toggle-input:focus-visible + .welcome-more-toggle {
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
+    box-shadow: var(--focus-ring-shadow);
+}
+
+.welcome-more-toggle:hover {
+    text-decoration: underline;
+}
+
+.welcome-more-toggle::after {
+    content: ' >';
+}
+
+.welcome-more-toggle-input:checked + .welcome-more-toggle::after {
+    content: ' <';
+}
+
+.welcome-more-content {
+    padding-top: 0.4rem;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-0.75rem) scale(0.98);
+    max-height: 0;
+    transition: opacity 0.28s ease, transform 0.28s ease, max-height 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
+
+.welcome-more-toggle-input:checked + .welcome-more-toggle + .welcome-more-content {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    max-height: 60em;
 }
 
 @media (max-width: 600px) {
@@ -613,7 +669,6 @@ body:not(.basic-info-page) main > section > .welcome-body > .welcome-text a:hove
 footer {
     background-color: var(--nav-bg);
     padding: 1.5em;
-    margin-top: 2em;
 }
 
 .footer-menu {
@@ -676,14 +731,26 @@ footer {
 }
 
 .basic-tab {
-    border: 1px solid #94c3d6;
+    --tab-bg: var(--blue-bg);
+    --tab-fg: var(--blue-fg);
+    border: 1px solid color-mix(in srgb, var(--tab-fg) 16%, white);
     border-radius: 0.7rem;
-    background: #ffffff;
-    color: #155676;
+    background: var(--tab-bg);
+    color: var(--tab-fg);
     font-weight: 700;
     padding: 0.8rem 0.7rem;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.basic-tab:nth-child(2) {
+    --tab-bg: var(--cyan-bg);
+    --tab-fg: var(--cyan-fg);
+}
+
+.basic-tab:nth-child(3) {
+    --tab-bg: var(--mint-bg);
+    --tab-fg: var(--mint-fg);
 }
 
 .basic-tab:hover {
@@ -692,9 +759,10 @@ footer {
 }
 
 .basic-tab.active {
-    background: #00607A;
-    color: #ffffff;
-    border-color: #00607A;
+    background: color-mix(in srgb, var(--tab-bg) 78%, white);
+    color: color-mix(in srgb, var(--tab-fg) 88%, black);
+    border-color: color-mix(in srgb, var(--tab-fg) 22%, white);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32), 0 0.35rem 0.8rem rgba(0, 96, 122, 0.14);
 }
 
 .basic-tab-panel {
@@ -798,14 +866,18 @@ footer {
 
 .save-button {
     align-self: flex-start;
-    border: none;
-    border-radius: 0.6rem;
-    background-color: #0f7f56;
-    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(17, 61, 17, 0.28);
+    border-radius: 0.5rem;
+    background-color: #92cf6f;
+    color: #113d11;
     font-weight: 700;
-    padding: 0.75rem 1.15rem;
+    padding: 0.9rem 1.6rem;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    box-shadow: 0 0.5rem 1.2rem rgba(0, 82, 10, 0.18);
 }
 
 .basic-tab,
@@ -818,9 +890,9 @@ footer {
 }
 
 .save-button:hover {
-    background-color: #0c704c;
+    background-color: #a0dc7d;
     transform: translateY(-1px);
-    box-shadow: 0 0.45rem 0.95rem rgba(12, 112, 76, 0.26);
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 82, 10, 0.24);
 }
 
 @media (max-width: 800px) {
