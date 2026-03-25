@@ -30,6 +30,10 @@ if (desktopProfileToggle && mobileProfileToggle) {
 
 const basicTabs = Array.from(document.querySelectorAll('.basic-tab'));
 const basicTabPanels = Array.from(document.querySelectorAll('.basic-tab-panel'));
+const basicDetailsForm = document.getElementById('basic-details-form');
+const uploadPhotoForm = document.getElementById('upload-photo-form');
+const contactDetailsForm = document.getElementById('contact-details-form');
+const quickCarousel = document.querySelector('.checklist-quick-carousel');
 const dropZone = document.getElementById('drop-zone');
 const photoInput = document.getElementById('profile-photo-input');
 const photoPreview = document.getElementById('photo-preview');
@@ -82,6 +86,121 @@ if (basicTabs.length && basicTabPanels.length) {
 
     const activeTab = basicTabs.find((tab) => tab.classList.contains('active')) || basicTabs[0];
     activateTab(activeTab);
+}
+
+if (basicDetailsForm) {
+    basicDetailsForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (basicDetailsForm.reportValidity()) {
+            const uploadPhotoTab = basicTabs.find((tab) => tab.dataset.target === 'panel-upload-photo');
+            activateTab(uploadPhotoTab);
+        }
+    });
+}
+
+if (uploadPhotoForm) {
+    uploadPhotoForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        if (photoInput?.files?.length) {
+            const contactDetailsTab = basicTabs.find((tab) => tab.dataset.target === 'panel-contact-details');
+            activateTab(contactDetailsTab);
+            return;
+        }
+
+        photoInput?.reportValidity();
+    });
+}
+
+if (contactDetailsForm) {
+    contactDetailsForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (contactDetailsForm.reportValidity()) {
+            window.location.href = 'index.html';
+        }
+    });
+}
+
+if (quickCarousel) {
+    const quickViewport = quickCarousel.querySelector('.checklist-quick-viewport');
+    const quickTrack = quickCarousel.querySelector('.checklist-quick-track');
+    const quickItems = Array.from(quickCarousel.querySelectorAll('.checklist-quick-item'));
+    const prevButton = quickCarousel.querySelector('.checklist-quick-nav-prev');
+    const nextButton = quickCarousel.querySelector('.checklist-quick-nav-next');
+    let quickIndex = 0;
+    const isMobileQuickCarousel = () => window.innerWidth <= 700;
+
+    const getItemsPerView = () => {
+        if (window.innerWidth <= 700) {
+            return 1;
+        }
+        if (window.innerWidth <= 900) {
+            return 2;
+        }
+        return 3;
+    };
+
+    const maxQuickIndex = () => Math.max(0, quickItems.length - getItemsPerView());
+
+    const updateQuickCarousel = () => {
+        if (!quickTrack || !quickItems.length) {
+            return;
+        }
+
+        if (isMobileQuickCarousel()) {
+            quickTrack.style.transform = 'none';
+
+            if (prevButton) {
+                prevButton.disabled = true;
+            }
+
+            if (nextButton) {
+                nextButton.disabled = true;
+            }
+
+            return;
+        }
+
+        const clampedIndex = Math.max(0, Math.min(quickIndex, maxQuickIndex()));
+        quickIndex = clampedIndex;
+        const offsetLeft = quickItems[quickIndex].offsetLeft;
+        quickTrack.style.transform = `translateX(-${offsetLeft}px)`;
+
+        if (prevButton) {
+            prevButton.disabled = quickIndex === 0;
+        }
+
+        if (nextButton) {
+            nextButton.disabled = quickIndex >= maxQuickIndex();
+        }
+    };
+
+    prevButton?.addEventListener('click', () => {
+        if (isMobileQuickCarousel()) {
+            return;
+        }
+
+        quickIndex -= 1;
+        updateQuickCarousel();
+    });
+
+    nextButton?.addEventListener('click', () => {
+        if (isMobileQuickCarousel()) {
+            return;
+        }
+
+        quickIndex += 1;
+        updateQuickCarousel();
+    });
+
+    window.addEventListener('resize', () => {
+        if (!isMobileQuickCarousel() && quickViewport) {
+            quickViewport.scrollLeft = 0;
+        }
+
+        updateQuickCarousel();
+    });
+    updateQuickCarousel();
 }
 
 function updatePhotoPreview(file) {
