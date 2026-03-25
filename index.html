@@ -202,26 +202,6 @@
             </ul>
         </nav>
     </footer>
-    <script>
-        const desktopProfileToggle = document.getElementById('profile-menu-toggle-desktop');
-        const mobileProfileToggle = document.getElementById('profile-menu-toggle-mobile');
-        const profileToggleBreakpoint = window.matchMedia('(max-width: 600px)');
-
-        function syncProfileToggles(sourceToggle) {
-            const isChecked = sourceToggle.checked;
-            desktopProfileToggle.checked = isChecked;
-            mobileProfileToggle.checked = isChecked;
-        }
-
-        function resetProfileToggles() {
-            desktopProfileToggle.checked = false;
-            mobileProfileToggle.checked = false;
-        }
-
-        desktopProfileToggle.addEventListener('change', () => syncProfileToggles(desktopProfileToggle));
-        mobileProfileToggle.addEventListener('change', () => syncProfileToggles(mobileProfileToggle));
-
-        profileToggleBreakpoint.addEventListener('change', resetProfileToggles);
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
