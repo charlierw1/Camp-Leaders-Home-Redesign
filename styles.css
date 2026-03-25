@@ -402,7 +402,7 @@ header:has(.profile-menu-toggle-input:checked) .secondary-nav {
     --status-border: transparent;
     --status-fg: var(--lime-fg);
     --status-dot-fill: currentColor;
-    --status-dot-border: none;
+    --status-dot-border: 0.15em solid currentColor;
 }
 
 .secondary-nav a.underway {
