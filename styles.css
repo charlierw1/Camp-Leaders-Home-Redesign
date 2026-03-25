@@ -284,14 +284,9 @@ header h1 {
     position: relative;
     z-index: 5;
     row-gap: 0;
-}
-
-.profile-sections-nav {
     overflow: hidden;
     max-height: 4.4em;
-    position: relative;
-    z-index: 5;
-    transition: max-height 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+    transition: max-height 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), row-gap 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
 
 .secondary-nav li {
@@ -307,6 +302,21 @@ header h1 {
     transition: opacity 0.28s ease, transform 0.28s ease, max-height 0.28s ease;
 }
 
+.secondary-nav li:nth-child(1)  { transition-delay: 0.00s; }
+.secondary-nav li:nth-child(2)  { transition-delay: 0.04s; }
+.secondary-nav li:nth-child(3)  { transition-delay: 0.08s; }
+.secondary-nav li:nth-child(4)  { transition-delay: 0.12s; }
+.secondary-nav li:nth-child(5)  { transition-delay: 0.16s; }
+.secondary-nav li:nth-child(6)  { transition-delay: 0.20s; }
+.secondary-nav li:nth-child(7)  { transition-delay: 0.24s; }
+.secondary-nav li:nth-child(8)  { transition-delay: 0.28s; }
+.secondary-nav li:nth-child(9)  { transition-delay: 0.32s; }
+.secondary-nav li:nth-child(10) { transition-delay: 0.36s; }
+.secondary-nav li:nth-child(11) { transition-delay: 0.40s; }
+.secondary-nav li:nth-child(12) { transition-delay: 0.44s; }
+.secondary-nav li:nth-child(13) { transition-delay: 0.48s; }
+.secondary-nav li:nth-child(14) { transition-delay: 0.52s; }
+
 .secondary-nav li:first-child {
     opacity: 1;
     transform: translateX(0) scale(1);
@@ -315,7 +325,7 @@ header h1 {
     visibility: visible;
 }
 
-header:has(.profile-menu-toggle-input:checked) .profile-sections-nav .secondary-nav li {
+header:has(.profile-menu-toggle-input:checked) .secondary-nav li {
     opacity: 1;
     transform: translateX(0) scale(1);
     max-height: 3.5em;
@@ -323,11 +333,8 @@ header:has(.profile-menu-toggle-input:checked) .profile-sections-nav .secondary-
     visibility: visible;
 }
 
-header:has(.profile-menu-toggle-input:checked) .profile-sections-nav {
+header:has(.profile-menu-toggle-input:checked) .secondary-nav {
     max-height: 40em;
-}
-
-header:has(.profile-menu-toggle-input:checked) .profile-sections-nav .secondary-nav {
     row-gap: 0.4em;
 }
 
@@ -734,24 +741,6 @@ body:not(.basic-info-page) main > section > .welcome-body > .welcome-text a:hove
         transform: translateY(0);
         overflow-y: auto;
         margin-top: 0.75rem;
-    }
-
-    header:not(:has(.menu-toggle-input:checked)) .profile-sections-nav {
-        max-height: 0;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-    }
-
-    header:has(.menu-toggle-input:checked) .profile-sections-nav {
-        max-height: 4.4em;
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-    }
-
-    header:has(.menu-toggle-input:checked):has(.profile-menu-toggle-input:checked) .profile-sections-nav {
-        max-height: 40em;
     }
 
     .nav-grid {
