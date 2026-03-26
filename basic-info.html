@@ -350,9 +350,17 @@
                         <label class="upload-label" for="profile-photo-input">Upload Profile Photo</label>
                         <div class="drop-zone" id="drop-zone" tabindex="0" role="button" aria-label="Drag and drop profile photo here or click to upload">
                             <input type="file" id="profile-photo-input" accept="image/*" hidden required>
+                            <div class="drop-zone-visual" aria-hidden="true">
+                                <svg class="drop-zone-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                                    <g fill-rule="evenodd" transform="translate(42.667 42.667)">
+                                        <path d="M178.0832,42.6666667 L231.972,85.2776667 L167.969,149.292667 L73.9840567,149.293232 L1.337,383.999667 L0,384 L0,42.6666667 L178.0832,42.6666667 Z M105.447376,191.954413 L436.204,191.958667 L377.916587,384 L46,383.999667 L105.447376,191.954413 Z"/>
+                                        <path fill-rule="nonzero" d="M384,0 L384,149.333333 L341.333333,149.333333 L341.332777,72.836 L264.835777,149.332777 L204.496777,149.332777 L311.162777,42.666 L234.666667,42.6666667 L234.666667,0 L384,0 Z"/>
+                                    </g>
+                                </svg>
+                                <img id="photo-preview" class="photo-preview" alt="Profile photo preview" hidden>
+                            </div>
                             <p><strong>Drag and drop your image here</strong></p>
                             <p>or click to browse</p>
-                            <img id="photo-preview" class="photo-preview" alt="Profile photo preview" hidden>
                         </div>
 
                         <button type="submit" class="save-button">Save and Continue</button>
