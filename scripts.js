@@ -193,6 +193,21 @@ if (quickCarousel) {
         updateQuickCarousel();
     });
 
+    quickItems.forEach((item, index) => {
+        item.addEventListener('focus', () => {
+            if (isMobileQuickCarousel()) {
+                item.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+                return;
+            }
+
+            const itemsPerView = getItemsPerView();
+            if (index < quickIndex || index >= quickIndex + itemsPerView) {
+                quickIndex = Math.min(index, maxQuickIndex());
+                updateQuickCarousel();
+            }
+        });
+    });
+
     window.addEventListener('resize', () => {
         if (!isMobileQuickCarousel() && quickViewport) {
             quickViewport.scrollLeft = 0;
