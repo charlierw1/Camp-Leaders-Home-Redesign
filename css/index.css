@@ -1,0 +1,177 @@
+.checklist-quick-carousel {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 0.25rem 0.1rem 0.5rem;
+}
+
+.checklist-quick-viewport {
+    width: 100%;
+    overflow: hidden;
+    padding: 0.9rem;
+    margin: -0.9rem 0;
+}
+
+.checklist-quick-track {
+    display: flex;
+    gap: 0.8rem;
+    transition: transform 0.35s ease;
+    will-change: transform;
+}
+
+.checklist-quick-nav {
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 96, 122, 0.35);
+    background: white;
+    color: var(--nav-bg);
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 96, 122, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.checklist-quick-nav-prev {
+    margin-right: 0.4rem;
+}
+
+.checklist-quick-nav-next {
+    margin-left: 0.4rem;
+}
+
+.checklist-quick-nav:hover {
+    transform: translateY(-1px);
+    background-color: #f0f9fc;
+    box-shadow: 0 0.35rem 0.75rem rgba(0, 96, 122, 0.2);
+}
+
+.checklist-quick-nav:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.checklist-quick-item {
+    --quick-bg: var(--blue-bg);
+    --quick-fg: var(--blue-fg);
+    flex: 0 0 calc((100% - 1.6rem) / 3);
+    min-width: 14rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.32rem;
+    min-height: 5.15rem;
+    padding: 0.75rem 0.95rem;
+    border-radius: 0.65rem;
+    background-color: var(--quick-bg);
+    color: var(--quick-fg);
+    text-decoration: none;
+    border: 1px solid color-mix(in srgb, var(--quick-fg) 20%, white);
+    box-shadow: 0 0.5rem 1.2rem rgba(0, 82, 10, 0.14);
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+}
+
+.checklist-quick-item:hover {
+    transform: translateY(-0.125rem);
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 82, 10, 0.2);
+    filter: saturate(1.05);
+}
+
+.checklist-quick-item:focus-visible {
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
+    box-shadow: var(--focus-ring-shadow);
+}
+
+.checklist-quick-label {
+    font-size: var(--small-copy-font-size);
+    line-height: 1.2;
+    font-weight: 700;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.045em;
+}
+
+.checklist-quick-text {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.checklist-quick-profile { --quick-bg: var(--blue-bg); --quick-fg: var(--blue-fg); }
+.checklist-quick-interviews { --quick-bg: var(--mint-bg); --quick-fg: var(--mint-fg); }
+.checklist-quick-payments { --quick-bg: var(--lime-bg); --quick-fg: var(--lime-fg); }
+.checklist-quick-documents { --quick-bg: var(--yellow-bg); --quick-fg: var(--yellow-fg); }
+.checklist-quick-courses { --quick-bg: var(--pink-bg); --quick-fg: var(--pink-fg); }
+.checklist-quick-visa { --quick-bg: var(--orange-bg); --quick-fg: var(--orange-fg); }
+.checklist-quick-events { --quick-bg: var(--cyan-bg); --quick-fg: var(--cyan-fg); }
+
+@keyframes quickProfilePulse {
+    0%, 100% {
+        box-shadow: 0 0.5rem 1.2rem rgba(0, 44, 102, 0.22), 0 0 0 1px rgba(0, 44, 102, 0.22), 0 0 10px 2px rgba(0, 44, 102, 0.14);
+        outline-color: rgba(0, 44, 102, 0.7);
+    }
+    50% {
+        box-shadow: 0 0.5rem 1.2rem rgba(0, 44, 102, 0.22), 0 0 0 2px rgba(0, 44, 102, 0.62), 0 0 16px 4px rgba(0, 44, 102, 0.28);
+        outline-color: rgba(0, 44, 102, 0.9);
+    }
+}
+
+.checklist-quick-profile {
+    animation: quickProfilePulse 2.4s ease-in-out infinite,
+               wiggle 10s ease-in-out 4s infinite;
+}
+
+@media (max-width: 900px) {
+    .checklist-quick-item {
+        flex-basis: calc((100% - 0.8rem) / 2);
+    }
+}
+
+@media (max-width: 700px) {
+    .checklist-quick-carousel {
+        grid-template-columns: 1fr;
+    }
+
+    .checklist-quick-viewport {
+        overflow-x: auto;
+        overflow-y: visible;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: calc((100% - min(19rem, 84vw)) / 2);
+        padding: 0.9rem calc((100% - min(19rem, 84vw)) / 2);
+        margin: -0.9rem 0;
+        -webkit-overflow-scrolling: touch;
+        cursor: grab;
+    }
+
+    .checklist-quick-track {
+        width: max-content;
+        transform: none !important;
+    }
+
+    .checklist-quick-nav {
+        display: none;
+    }
+
+    .checklist-quick-item {
+        flex-basis: min(19rem, 84vw);
+        min-width: min(19rem, 84vw);
+        scroll-snap-align: center;
+    }
+}
+
+
+body:not(.basic-info-page) main > .welcome-body > video {
+    flex: 0 1 45%;
+    min-width: 0;
+    width: 100%;
+    border-radius: 0.5em;
+    display: block;
+    background-color: #000;
+}
