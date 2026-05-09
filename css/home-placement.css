@@ -11,6 +11,11 @@
     flex-direction: column;
 }
 
+.placement-buttons {
+    display: flex;
+    justify-content: center;
+}
+
 .next-action-button {
     display: flex;
     align-items: center;
@@ -25,12 +30,23 @@
     text-decoration: none;
     font-size: 1.25em;
     font-weight: 700;
-    border: 1px solid rgba(0, 82, 10, 0.28);
-    box-shadow: 0 0.5rem 1.2rem rgba(0, 82, 10, 0.18);
+    border: 1px solid var(--lime-fg);
+    box-shadow: 0 0.5rem 1.2rem var(--lime-fg);
     animation: highlightPulse 2.4s ease-in-out infinite,
                wiggle 10s ease-in-out 4s infinite;
     transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    margin: 1em;
 }
+
+.next-action-button:nth-of-type(2) {
+    background-color: var(--orange-bg);
+    color: var(--orange-fg);
+    border: 1px solid var(--orange-fg);
+    box-shadow: 0 0.5rem 1.2rem var(--orange-fg);
+    animation: highlightPulseOrange 2.4s ease-in-out infinite,
+               wiggle 10s ease-in-out 4s infinite;
+}
+
 
 @keyframes highlightPulse {
     0%, 100% {
@@ -38,6 +54,15 @@
     }
     50% {
         box-shadow: 0 0.5rem 1.2rem rgba(0, 82, 10, 0.18), 0 0 0 2px var(--next-action-glow), 0 0 16px 4px rgba(0, 82, 10, 0.32);
+    }
+}
+
+@keyframes highlightPulseOrange {
+    0%, 100% {
+        box-shadow: 0 0.5rem 1.2rem rgba(71, 42, 0, 0.18), 0 0 0 1px rgba(71, 42, 0, 0.25), 0 0 10px 2px rgba(71, 42, 0, 0.2);
+    }
+    50% {
+        box-shadow: 0 0.5rem 1.2rem rgba(71, 42, 0, 0.18), 0 0 0 2px rgba(71, 42, 0, 0.5), 0 0 16px 4px rgba(71, 42, 0, 0.32);
     }
 }
 
