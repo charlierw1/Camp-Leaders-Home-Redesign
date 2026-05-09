@@ -552,6 +552,55 @@ body:not(.basic-info-page) main > .welcome-body > .welcome-text .welcome-link:ho
     max-height: 60em;
 }
 
+.cta-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 0.25em 0.75em;
+    margin: 0;
+    align-self: center;
+    border-radius: 0.5em;
+    background-color: var(--lime-bg);
+    color: var(--lime-fg);
+    text-decoration: none;
+    font-size: 1.25em;
+    font-weight: 700;
+    border: 1px solid var(--lime-fg);
+    box-shadow: 0 0.5rem 1.2rem var(--lime-fg);
+    animation: highlightPulse 2.4s ease-in-out infinite,
+               wiggle 10s ease-in-out 4s infinite;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    margin: 1em;
+}
+
+@keyframes highlightPulse {
+    0%, 100% {
+        box-shadow: 0 0.5rem 1.2rem rgba(0, 82, 10, 0.18), 0 0 0 1px var(--next-action-glow-soft), 0 0 10px 2px var(--next-action-glow-soft);
+    }
+    50% {
+        box-shadow: 0 0.5rem 1.2rem rgba(0, 82, 10, 0.18), 0 0 0 2px var(--next-action-glow), 0 0 16px 4px rgba(0, 82, 10, 0.32);
+    }
+}
+
+.cta-text {
+    text-align: center;
+    color: var(--nav-bg);
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.cta-button:hover {
+    transform: translateY(-0.125rem);
+    background-color: var(--lime-bg);
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.15);
+}
+
+.cta-button:focus-visible {
+    outline: 3px solid rgba(0, 82, 10, 0.35);
+    outline-offset: 4px;
+}
+
 @media (max-width: 600px) {
     .menu-toggle-label {
         display: inline-flex;
